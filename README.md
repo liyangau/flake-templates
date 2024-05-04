@@ -69,3 +69,49 @@ This template gives me a shell with Python 3.12 along with certain libraries to 
 ```bash
 nix flake init -t github:liyangau/flake-templates#python
 ```
+
+## unfree App
+
+Sometimes, you might encounter errors similar to the following when attempting to use the flake. This typically occurs due to one of the packages being non-free, such as terraform.
+
+```bash
+       a) To temporarily allow unfree packages, you can use an environment variable
+          for a single invocation of the nix tools.
+
+            $ export NIXPKGS_ALLOW_UNFREE=1
+
+          Note: When using `nix shell`, `nix build`, `nix develop`, etc with a flake,
+                then pass `--impure` in order to allow use of environment variables.
+
+       b) For `nixos-rebuild` you can set
+         { nixpkgs.config.allowUnfree = true; }
+       in configuration.nix to override this.
+
+       Alternatively you can configure a predicate to allow specific packages:
+         { nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+             "terraform"
+           ];
+         }
+
+       c) For `nix-env`, `nix-build`, `nix-shell` or any other Nix command you can add
+         { allowUnfree = true; }
+       to ~/.config/nixpkgs/config.nix.
+```
+
+To solve the issue, you need to add `config.allowUnfree = true;` to `forEachSystem` as below.
+
+```nix
+    let
+      forEachSystem =
+        f:
+        nixpkgs.lib.genAttrs (import systems) (
+          system:
+          f {
+            pkgs = import nixpkgs {
+              config.allowUnfree = true;
+              inherit system;
+            };
+          }
+        );
+    in
+```
