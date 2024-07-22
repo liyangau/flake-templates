@@ -2,23 +2,6 @@
 
 Here are the templates I often use for my projects. They works perfectly with `nix develop` command and [nix-direnv](https://github.com/nix-community/nix-direnv). 
 
-## Input URLs
-
-I use shorthand for the input urls.
-
-- `systems.url = "systems";` -> `github:nix-systems/default`
-- `nixpkgs.url = "nixpkgs";` -> `github:NixOS/nixpkgs/nixpkgs-unstable`
-- `nur.url = "nur";` -> `github:nix-community/NUR` 
-
-Feel free to change the inputs to suit your needs. For example, you can change it to below
-
-```nix
-  inputs = {
-    systems.url = "github:nix-systems/x86_64-linux";
-    nixpkgs.url = "github:NixOS/nixpkgs/23.11";
-  };
-```
-
 ## Systems
 
 When we start using flake, we must specify which system this flake is targeting to. Honestly I never really care about the targeting system, I am using both Linxu and MacOS, I just want the same flake to be working on all systems. 

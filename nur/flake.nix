@@ -1,8 +1,8 @@
 {
   inputs = {
-    systems.url = "systems";
-    nixpkgs.url = "nixpkgs";
-    nur.url = "nur";
+    systems.url = "github:nix-systems/default";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs =
@@ -30,7 +30,7 @@
       { pkgs }: {
         default = pkgs.mkShellNoCC {
           packages = [
-            pkgs.nur.repos.liyangau.squoosh-cli
+            pkgs.nur.repos.liyangau.case-cli
           ];
         };
       }
