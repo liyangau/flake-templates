@@ -47,11 +47,15 @@ nix flake init -t github:liyangau/flake-templates#local
 
 ### python
 
-This template gives me a shell with Python 3.12 along with certain libraries to my needs.
+This template gives you a shell with Python 3.12 along with certain libraries to my needs.
 
 ```bash
 nix flake init -t github:liyangau/flake-templates#python
 ```
+
+### docker
+
+This template is a starting point to built docker images for x86_64 and ARM64 linux systems. You can find more examples [here](https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/docker/examples.nix) and the docs [here](https://ryantm.github.io/nixpkgs/builders/images/dockertools/).
 
 ## unfree App
 

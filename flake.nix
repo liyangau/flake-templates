@@ -19,6 +19,10 @@
         path = ./shell;
         description = "Use packages available on nixpkgs";
       };
+      docker = {
+        path = ./docker;
+        description = "Build Docker images with Nix";
+      };
     };
     defaultTemplate = self.templates.shell;  
     };
