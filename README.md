@@ -1,5 +1,7 @@
 # Nix flake templates
 
+> For more details, please check [my blog post](https://tech.aufomm.com/my-nix-journey-how-to-use-nix-to-set-up-dev-environment/).
+
 Here are the templates I often use for my projects. They works perfectly with `nix develop` command and [nix-direnv](https://github.com/nix-community/nix-direnv). 
 
 ## Systems
