@@ -34,7 +34,7 @@
         };
     in
     {
-      packages = forEachSupportedSystem (system:         
+      packages = forEachSupportedSystem (system:
         let
           pkgs = import nixpkgs { inherit system; };
 
