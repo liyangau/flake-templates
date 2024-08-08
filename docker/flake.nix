@@ -4,11 +4,7 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      systems,
-    }:
+    { self, nixpkgs }:
     let
       lib = nixpkgs.lib;
       supportedSystems = [
@@ -34,7 +30,8 @@
         };
     in
     {
-      packages = forEachSupportedSystem (system:
+      packages = forEachSupportedSystem (
+        system:
         let
           pkgs = import nixpkgs { inherit system; };
 
