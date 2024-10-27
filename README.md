@@ -21,7 +21,7 @@ When we start using flake, we must specify which system this flake is targeting 
 
 ## Templates
 
-Currently I have 4 templates to cover my daily needs.
+Currently I have 5 templates to cover my daily needs.
 
 ### default / shell
 
