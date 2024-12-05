@@ -23,7 +23,11 @@
         path = ./docker;
         description = "Build Docker images with Nix";
       };
+      server = {
+        path = ./server;
+        description = "Manage NixOS server remotely";
+      };
     };
-    defaultTemplate = self.templates.shell;  
+    defaultTemplate = self.templates.shell;
     };
 }
