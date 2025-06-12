@@ -2,6 +2,7 @@
   description = "Manage NixOS server remotely";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    colmena.url = "github:zhaofengli/colmena";
     disko ={
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -9,7 +10,7 @@
   };
 
   outputs =
-    { nixpkgs, disko, ... }:
+    { nixpkgs, disko, colmena, ... }:
     {
       nixosConfigurations.demo = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -18,11 +19,9 @@
           ./configuration.nix
         ];
       };
-      colmena = {
+      colmenaHive = colmena.lib.makeHive {
         meta = {
-          nixpkgs = import nixpkgs {
-            system = "x86_64-linux";
-          };
+          nixpkgs = nixpkgs.legacyPackages.x86_64-linux;
         };
 
         defaults = { pkgs, ... }: {
