@@ -59,9 +59,17 @@ nix flake init -t github:liyangau/flake-templates#python
 
 This template is a starting point to built docker images for x86_64 and ARM64 linux systems. You can find more examples [here](https://github.com/NixOS/nixpkgs/blob/master/pkgs/build-support/docker/examples.nix) and the docs [here](https://ryantm.github.io/nixpkgs/builders/images/dockertools/).
 
+```bash
+nix flake init -t github:liyangau/flake-templates#docker
+```
+
 ### server
 
 This template can be used to provision NixOS server with [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) and manage NixOS server remotely via [Colmena](https://colmena.cli.rs/unstable/).
+
+```bash
+nix flake init -t github:liyangau/flake-templates#server
+```
 
 ## unfree App
 
