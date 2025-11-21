@@ -11,7 +11,15 @@
         "x86_64-linux"
         "aarch64-linux"
       ];
-      forEachSupportedSystem = f: lib.genAttrs supportedSystems (system: f system);
+      forEachSupportedSystem =
+        f:
+        lib.genAttrs supportedSystems (
+          system:
+          f {
+            inherit system;
+            pkgs = nixpkgs.legacyPackages.${system};
+          }
+        );
       imageName = "example";
       imageTag = "latest";
       mkDockerImage =
@@ -31,10 +39,8 @@
     in
     {
       packages = forEachSupportedSystem (
-        system:
+        { system, pkgs }:
         let
-          pkgs = import nixpkgs { inherit system; };
-
           buildForLinux =
             targetSystem:
             if system == targetSystem then
@@ -51,20 +57,23 @@
         }
       );
 
-      apps = forEachSupportedSystem (system: {
-        default = {
-          type = "app";
-          program = toString (
-            nixpkgs.legacyPackages.${system}.writeScript "build-multi-arch" ''
-              #!${nixpkgs.legacyPackages.${system}.bash}/bin/bash
-              set -e
-              echo "Building x86_64-linux image..."
-              nix build .#amd64 --out-link result-${system}-amd64
-              echo "Building aarch64-linux image..."
-              nix build .#arm64 --out-link result-${system}-arm64
-            ''
-          );
-        };
-      });
+      apps = forEachSupportedSystem (
+        { system, pkgs }:
+        {
+          default = {
+            type = "app";
+            program = toString (
+              pkgs.writeScript "build-multi-arch" ''
+                #!${pkgs.bash}/bin/bash
+                set -e
+                echo "Building x86_64-linux image..."
+                nix build .#amd64 --out-link result-${system}-amd64
+                echo "Building aarch64-linux image..."
+                nix build .#arm64 --out-link result-${system}-arm64
+              ''
+            );
+          };
+        }
+      );
     };
 }

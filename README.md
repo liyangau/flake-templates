@@ -17,7 +17,7 @@ When we start using flake, we must specify which system this flake is targeting 
     ];
 ```
 
-[flake-utils](https://github.com/numtide/flake-utils) is a popular solution to this problem. After reading [Why you don't need flake-utils](https://ayats.org/blog/no-flake-utils/), I've opted to use [nix-systems](https://github.com/nix-systems/nix-systems) instead.
+[flake-utils](https://github.com/numtide/flake-utils) is a popular solution to this problem. After reading [Why you don't need flake-utils](https://ayats.org/blog/no-flake-utils/), ~~I've opted to use [nix-systems](https://github.com/nix-systems/nix-systems) instead~~ I decided to define the system directly in each template, so I don’t have to handle it at runtime.
 
 ## Templates
 
@@ -65,7 +65,7 @@ nix flake init -t github:liyangau/flake-templates#docker
 
 ### server
 
-This template can be used to provision NixOS server with [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) and manage NixOS server remotely via [Colmena](https://colmena.cli.rs/unstable/).
+This template can be used to provision NixOS server with [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) and manage NixOS server remotely via [Colmena](https://colmena.cli.rs/unstable/). I've also included a package for building image for LXC container using [nixos-generator](https://github.com/nix-community/nixos-generators).
 
 ```bash
 nix flake init -t github:liyangau/flake-templates#server
