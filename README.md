@@ -19,6 +19,15 @@ When we start using flake, we must specify which system this flake is targeting 
 
 [flake-utils](https://github.com/numtide/flake-utils) is a popular solution to this problem. After reading [Why you don't need flake-utils](https://ayats.org/blog/no-flake-utils/), ~~I've opted to use [nix-systems](https://github.com/nix-systems/nix-systems) instead~~ I decided to define the system directly in each template, so I don’t have to handle it at runtime.
 
+## Getting Started (Video Guides)
+
+Here are some videos that walk you through how to use these templates:
+
+- [How to use Nix to set up and share development environment](https://youtu.be/_8xh5EcsHrs)
+- [How to build multi-arch Docker images on NixOS](https://youtu.be/RvWhTXh1Lcs)
+- [How to bootstrap and manage a NixOS server remotely using nixos-anywhere and colmena](https://youtu.be/csU0xXDjJHg)
+- [How to run and manage NixOS in an LXC container on Proxmox](https://youtu.be/ARj5EEvK3Ng)
+
 ## Templates
 
 Currently I have 6 templates to cover my daily needs.
